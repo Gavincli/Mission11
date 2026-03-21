@@ -1,0 +1,9 @@
+# Visual Studio cache
+.vs/
+bin/
+obj/
+
+# Node / React
+node_modules/
+dist/
+.env
