@@ -22,7 +22,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseCors(x => x.WithOrigins("http://localhost:5248"));
+app.UseCors(x => x.WithOrigins("http://localhost:5173"));
 
 app.UseHttpsRedirection();
 

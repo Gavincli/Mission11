@@ -21,7 +21,7 @@ function BookList() {
             <br />
             {books.map((b) => 
             <div id="bookCard">
-                <h3>b.Title</h3>
+                <h3>{b.title}</h3>
                 
                 
                 <ul>
