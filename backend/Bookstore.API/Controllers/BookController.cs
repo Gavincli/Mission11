@@ -1,6 +1,6 @@
 ﻿using Bookstore.API.Data;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bookstore.API.Controllers
 {
@@ -8,13 +8,46 @@ namespace Bookstore.API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private BookDbContext _context;
-        public BookController(BookDbContext temp) => _context = temp;
+        private readonly BookDbContext _context;
 
-        public IEnumerable<Book> GetBooks()
+        public BookController(BookDbContext temp)
         {
-            var something = _context.Books.ToList();
-            return something;
+            _context = temp;
+        }
+
+        // GET: api/book
+        [HttpGet]
+        public ActionResult<IEnumerable<Book>> GetBooks(int page = 1, int pageSize = 5, bool sortByTitle = false)
+        {
+            var query = _context.Books.AsQueryable();
+
+            // Optional sorting
+            if (sortByTitle)
+            {
+                query = query.OrderBy(b => b.Title);
+            }
+
+            // Pagination
+            var books = query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return Ok(books);
+        }
+
+        // GET: api/book/5
+        [HttpGet("{id}")]
+        public ActionResult<Book> GetBook(int id)
+        {
+            var book = _context.Books.Find(id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(book);
         }
     }
 }
