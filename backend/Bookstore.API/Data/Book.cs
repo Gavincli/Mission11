@@ -21,7 +21,7 @@ namespace Bookstore.API.Data
          [Required]
          public int PageCount { get; set; }
         [Required]
-        public bool Price { get; set; }
+        public decimal Price { get; set; }
 
     }
 }
