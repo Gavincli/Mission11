@@ -89,9 +89,14 @@ function BookList() {
             <div className="row mb-3">
                 <div className="col-12 d-flex justify-content-between align-items-center flex-wrap gap-2">
                     <h1 className="mb-0">📚 Bookstore</h1>
-                    <Link to="/cart" className="btn btn-outline-primary">
-                        View cart
-                    </Link>
+                    <div className="d-flex flex-wrap gap-2">
+                        <Link to="/adminbooks" className="btn btn-outline-secondary">
+                            Admin books
+                        </Link>
+                        <Link to="/cart" className="btn btn-outline-primary">
+                            View cart
+                        </Link>
+                    </div>
                 </div>
             </div>
 
